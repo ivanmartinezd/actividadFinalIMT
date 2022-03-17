@@ -20,4 +20,31 @@ public class AsignaturaServicempl implements AsignaturaService {
 		return asignaturaRepo.listar();
 	}
 
+	@Override
+	public Asignatura listarPorId(int id) {
+		return asignaturaRepo.listarPorId(id);
+	}
+
+	@Override
+	public void eliminar(int id) {
+		asignaturaRepo.deleteById(id);
+		
+	}
+
+	@Override
+	public void eliminarTodos() {
+		asignaturaRepo.deleteAll();
+	}
+
+	@Override
+	public Asignatura modificar(Asignatura asignatura) {
+		
+		return asignaturaRepo.save(asignatura);
+	}
+	
+	@Override
+	public Asignatura inserta(Asignatura emp) throws Exception {
+		return asignaturaRepo.save(emp);
+	}
+
 }

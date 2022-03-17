@@ -11,4 +11,7 @@ public interface AsignaturaRepoJPA extends JpaRepository<Asignatura, Integer>{
 	
 	@Query(value="select * from asignatura", nativeQuery=true)
 	public List<Asignatura> listar();
+	
+	@Query(value="select * from asignatura where id=?1", nativeQuery=true)
+	public Asignatura listarPorId(int id);
 }
