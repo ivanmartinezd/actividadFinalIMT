@@ -24,6 +24,17 @@ public class AsignaturaServicempl implements AsignaturaService {
 	public Asignatura listarPorId(int id) {
 		return asignaturaRepo.listarPorId(id);
 	}
+	
+	@Override
+	public List<Asignatura> listarFiltroNombre(String cad) {
+		return asignaturaRepo.listarCuyoNombreContiene(cad);
+	}
+
+	
+	@Override
+	public List<Asignatura> listarFiltroNombreEs(String cad) {
+		return asignaturaRepo.listarCuyoNombreEs(cad);
+	}
 
 	@Override
 	public void eliminar(int id) {
@@ -45,6 +56,12 @@ public class AsignaturaServicempl implements AsignaturaService {
 	@Override
 	public Asignatura inserta(Asignatura emp) throws Exception {
 		return asignaturaRepo.save(emp);
+	}
+
+	@Override
+	public Asignatura getById(Integer id) {
+		// TODO Auto-generated method stub
+		return asignaturaRepo.findById(id).orElse(null);
 	}
 
 }

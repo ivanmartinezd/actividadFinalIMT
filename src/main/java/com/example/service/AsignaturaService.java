@@ -13,4 +13,7 @@ public interface AsignaturaService {
 	void eliminarTodos();
 	Asignatura modificar(Asignatura asignatura);
 	Asignatura inserta(Asignatura emp) throws Exception;
+	Asignatura getById(Integer id);
+	List<Asignatura> listarFiltroNombreEs(String cad);
+	List<Asignatura> listarFiltroNombre(String cad);
 }

@@ -9,6 +9,7 @@ import org.springframework.cache.annotation.Cacheable;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -70,13 +71,10 @@ public class AsignaturaRestController {
 
 	@PutMapping
 	@CacheEvict(value = "asignaturas", allEntries = true)
-	public ResponseEntity<Asignatura> modificarEmpleado(@RequestBody Asignatura asignatura) {
+	public ResponseEntity<Asignatura> modificarAsignatura(@RequestBody Asignatura asignatura) {
 		try {
 			HttpHeaders headers = new HttpHeaders();
-			if (asignatura.getId() != null) {
-				headers.set("Message", "Para dar de alta una nueva asignatura, el ID debe llegar vacío");
-				return new ResponseEntity<>(headers, HttpStatus.NOT_ACCEPTABLE);
-			} else if (asignatura.getNombre() == null || asignatura.getNombre().equals("")
+			if (asignatura.getNombre() == null || asignatura.getNombre().equals("")
 					|| asignatura.getDescripcion() == null || asignatura.getDescripcion().equals("")) {
 				headers.set("Message", "Ni el NOMBRE ni la DESCRIPCIÓN pueden ser nulos");
 				return new ResponseEntity<>(headers, HttpStatus.NOT_ACCEPTABLE);
@@ -91,9 +89,10 @@ public class AsignaturaRestController {
 		}
 	}
 
-	@PutMapping
+	@PostMapping
 	@CacheEvict(value = "asignaturas", allEntries = true)
-	public ResponseEntity<Asignatura> insertarEmpleado(@RequestBody Asignatura asignatura) {
+	public ResponseEntity<Asignatura> insertarAsignatura(@RequestBody Asignatura asignatura) {
+		
 		try {
 			HttpHeaders headers = new HttpHeaders();
 			if (asignatura.getId() != null) {
